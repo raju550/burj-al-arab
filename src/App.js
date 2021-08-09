@@ -7,13 +7,13 @@ import Book from "./components/Book/Book";
 import Header from "./components/Header/Header";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
+// @ts-ignore
 export const UserContext = createContext();
 
 function App() {
   const [loginInUser, setLoginInUser] = useState({});
   return (
     <UserContext.Provider value={[loginInUser, setLoginInUser]}>
-      <h1>Name:{loginInUser.name}</h1>
       <Router>
         <Header />
         <Switch>

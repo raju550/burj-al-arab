@@ -22,11 +22,24 @@ const Login = () => {
         const { displayName, email } = result.user;
         const signInUser = { name: displayName, email };
         setLoginInUser(signInUser);
-        history.replace(from);
+        storeAuthToken();
+
         // ...
       })
       .catch((error) => {
         var errorCode = error.code;
+      });
+  };
+  const storeAuthToken = () => {
+    firebase
+      .auth()
+      .currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function (idToken) {
+        sessionStorage.setItem("token", idToken);
+        history.replace(from);
+      })
+      .catch(function (error) {
+        // Handle error
       });
   };
   return (
